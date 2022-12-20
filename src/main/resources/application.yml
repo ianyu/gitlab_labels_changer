@@ -3,7 +3,7 @@ server:
 
 spring:
   gitlab: 
-    url: http://src.tpisoftware.com/api/v4/
+    url: http://10.20.30.241/api/v4/
     api_key: gDtGMfzLrP5WzxxRjAxY
   
 

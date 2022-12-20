@@ -74,6 +74,8 @@ public class GitLabPushEventService {
 		URI removeUri = removeBuilder.buildAndExpand(urlParams).toUri();
 		ResponseEntity<String> removeLabelResponse = restTemplate.exchange(removeUri.toString(), HttpMethod.PUT, entity, String.class);
 		logger.info("remove issues labels api_url: {}, response: {}", removeUri, removeLabelResponse);
+		
+		
 	}
 
 }

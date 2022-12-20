@@ -29,7 +29,7 @@ public class GitlabLabelsChangerController {
 	@Autowired
 	GitLabMergeRequestsEventsService gitLabMergeRequestsEventsService;
 
-	@RequestMapping(value = "/labelsActionPush", method = RequestMethod.PUT)
+	@RequestMapping(value = "/labelsActionPush", method = RequestMethod.POST)
 	public Object labelsActionPush(@RequestBody String payload) {
 
 		StringBuffer localApiUrl = 
@@ -43,7 +43,7 @@ public class GitlabLabelsChangerController {
 		
 	}
 	
-	@RequestMapping(value = "/labelsActionMR", method = RequestMethod.PUT)
+	@RequestMapping(value = "/labelsActionMR", method = RequestMethod.POST)
 	public Object labelsActionMR(@RequestBody String payload) {
 
 		StringBuffer localApiUrl = 
