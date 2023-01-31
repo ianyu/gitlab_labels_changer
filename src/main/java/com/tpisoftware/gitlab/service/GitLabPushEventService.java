@@ -40,7 +40,7 @@ public class GitLabPushEventService {
 		String removeLabels;
 		String projectId;
 		String issuesIid;
-		int totalCommitsCount;
+		int totalCommitsCount = 0;
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
@@ -52,8 +52,9 @@ public class GitLabPushEventService {
 
 		projectId = rootNode.get("project_id").asText();
 		issuesIid = rootNode.get("ref").asText().replace("refs/heads/", "").split("-")[0];
+		totalCommitsCount = rootNode.get("total_commits_count").asInt();
 
-		if(totalCommitsCount = 0) {
+		if(totalCommitsCount <= 0) {
 			removeLabels = "To+Do";
 			addLabels = "Doing";
 			
