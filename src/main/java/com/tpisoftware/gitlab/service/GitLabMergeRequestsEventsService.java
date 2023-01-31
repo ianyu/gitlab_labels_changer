@@ -58,26 +58,26 @@ public class GitLabMergeRequestsEventsService {
         
         switch(webhookAction) {
         case "open":
-        	addLabels = "MR+Waitting";
         	removeLabels = "Doing";
+        	addLabels = "MR+Waitting";
         	invokeGitLabApi(localApiUrl, addLabels, removeLabels, entity, urlParams);
         	break;
         
         case "approved":
+        	removeLabels = "Doing,MR+Waitting";
         	addLabels = "MR+Reviewed";
-        	removeLabels = "MR+Waitting";
         	invokeGitLabApi(localApiUrl, addLabels, removeLabels, entity, urlParams);
         	break;
         	
         case "unapproved":
+        	removeLabels = "MR+Waitting,MR+Reviewed,Env+SIT";
         	addLabels = "Doing";
-        	removeLabels = "MR+Waitting";
         	invokeGitLabApi(localApiUrl, addLabels, removeLabels, entity, urlParams);
         	break;
         	
         case "merge":
+        	removeLabels = "Doing,MR+Waitting,MR+Reviewed";
         	addLabels = "Env+SIT";
-        	removeLabels = "MR+Reviewed";
         	invokeGitLabApi(localApiUrl, addLabels, removeLabels, entity, urlParams);
         	break;
         	

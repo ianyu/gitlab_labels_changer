@@ -40,6 +40,7 @@ public class GitLabPushEventService {
 		String removeLabels;
 		String projectId;
 		String issuesIid;
+		int totalCommitsCount;
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
@@ -52,14 +53,16 @@ public class GitLabPushEventService {
 		projectId = rootNode.get("project_id").asText();
 		issuesIid = rootNode.get("ref").asText().replace("refs/heads/", "").split("-")[0];
 
-		addLabels = "Doing";
-		removeLabels = "To+Do";
-		
-		Map<String, String> urlParams = new HashMap<>();
-		urlParams.put("projectId", projectId);
-		urlParams.put("issuesIid", issuesIid);
+		if(totalCommitsCount = 0) {
+			removeLabels = "To+Do";
+			addLabels = "Doing";
+			
+			Map<String, String> urlParams = new HashMap<>();
+			urlParams.put("projectId", projectId);
+			urlParams.put("issuesIid", issuesIid);
 
-		invokeGitLabApi(localApiUrl, addLabels, removeLabels, entity, urlParams);
+			invokeGitLabApi(localApiUrl, addLabels, removeLabels, entity, urlParams);
+		}
 	}
 
 	private void invokeGitLabApi(String localApiUrl, String addLabels, String removeLabels, HttpEntity<String> entity,
